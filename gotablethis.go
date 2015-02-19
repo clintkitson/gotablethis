@@ -30,7 +30,9 @@ func (table Table) PrintTable() {
 		row := make([]string, len(table.Header))
 		for j, arg := range table.Columns {
 			field := table.RowData.Index(i).FieldByName(arg)
-			if field.Kind() == reflect.String {
+			if field.Kind() == reflect.Interface {
+				continue
+			} else {
 				row[j] = fmt.Sprintf("%v", field.Interface())
 			}
 		}
